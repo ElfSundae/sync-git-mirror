@@ -8,6 +8,7 @@ usage()
     script=$(basename "$0")
     cat <<EOT
 Sync Git Mirror - Keep your git mirrors and forks up to date.
+https://github.com/ElfSundae/sync-git-mirror
 
 Usage: $script [options] source mirror
 
