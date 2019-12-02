@@ -23,3 +23,30 @@ Examples:
     sync-git-mirror.sh https://github.com/foo/bar.git git@github.com:username/bar.git \
         --path=/data/mirrors/bar
 ```
+
+If you have many mirrors to sync, you may like to use [`sync-my-git-mirror.sh`](sync-my-git-mirror.sh) which makes life easier.
+
+**:warning: You need to change the `MIRROR` and `REPO_PATH` variables before using `sync-my-git-mirror.sh`:**
+
+```bash
+# Mirror repo URL for the repo name
+MIRROR="git@github.com:ElfSundae/$REPO_NAME.git"
+# The default local path to clone the source repo
+REPO_PATH="/data/mirrors/$REPO_NAME"
+```
+
+Examples:
+
+```bash
+# Sync the current working repo
+sync-my-git-mirror.sh .
+
+# Sync a local repo with different name
+sync-my-git-mirror.sh ~/path/to/repo RepoName
+
+# Sync a remote repo, clone to the default path
+sync-my-git-mirror.sh git://path/to/repo.git
+
+# Sync a remote repo with different name, clone to the default path
+sync-my-git-mirror.sh git://path/to/repo.git RepoName
+```
