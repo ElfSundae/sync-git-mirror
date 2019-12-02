@@ -10,10 +10,10 @@ usage()
 Sync Git Mirror - Keep your git mirrors and forks up to date.
 https://github.com/ElfSundae/sync-git-mirror
 
-Usage: $script [options] source mirror
+Usage: $script source mirror [<options>]
 
-\`source\` can be a git URL or a local path
-\`mirror\` should be a git URL
+\`source\` can be a remote URL or a local path of working copy
+\`mirror\` should be a remote URL
 
 Options:
         --path=           Path to clone
@@ -21,8 +21,8 @@ Options:
         -h|--help         Show this usage
 
 Examples:
-    $script https://github.com/foo/bar.git git@github.com:username/bar.git
-    $script /data/mirrors/bar git@github.com:username/bar.git
+    $script https://github.com/foo/bar git@github.com:username/bar.git
+    $script /path/to/working/copy git@github.com:username/name.git
     $script https://github.com/foo/bar.git git@github.com:username/bar.git \\
         --path=/data/mirrors/bar
 EOT
