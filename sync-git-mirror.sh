@@ -40,8 +40,8 @@ while [[ $# > 0 ]]; do
             shift
             ;;
         -h|--help)
-            usage; exit
-            shift
+            usage
+            exit
             ;;
         *)
             if [[ -z ${SOURCE+x} ]]; then
