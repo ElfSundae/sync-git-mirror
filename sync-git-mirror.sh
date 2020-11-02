@@ -78,7 +78,7 @@ fi
 
 cd "$REPO_PATH"
 
-git fetch origin --prune --prune-tags
+git fetch origin --prune --prune-tags --force
 
 # Checkout all remote branches
 # https://gist.github.com/ElfSundae/92a5868f418ec3187dfff90fe6b20387
