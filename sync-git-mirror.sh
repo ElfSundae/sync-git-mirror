@@ -80,18 +80,18 @@ cd "$REPO_PATH"
 
 git fetch origin --prune --prune-tags --force
 
+if ! git config remote.$MIRROR_NAME.url > /dev/null; then
+    git remote add $MIRROR_NAME $MIRROR
+else
+    git remote set-url $MIRROR_NAME $MIRROR
+fi
+
 # Checkout all remote branches
 # https://gist.github.com/ElfSundae/92a5868f418ec3187dfff90fe6b20387
 # https://stackoverflow.com/a/6300386/521946
 remote=origin ; for brname in `git branch -r | grep $remote | grep -v /master | grep -v /HEAD | awk '{gsub(/^[^\/]+\//,"",$1); print $1}'`; do git branch --track $brname $remote/$brname || true; done 2>/dev/null
 
 git pull origin
-
-if ! git config remote.$MIRROR_NAME.url > /dev/null; then
-    git remote add $MIRROR_NAME $MIRROR
-else
-    git remote set-url $MIRROR_NAME $MIRROR
-fi
 
 git push $MIRROR_NAME --all --prune
 git push $MIRROR_NAME --tags --prune
