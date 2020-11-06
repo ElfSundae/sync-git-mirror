@@ -86,12 +86,16 @@ else
     git remote set-url $MIRROR_NAME $MIRROR
 fi
 
-# Checkout all remote branches
-# https://gist.github.com/ElfSundae/92a5868f418ec3187dfff90fe6b20387
-# https://stackoverflow.com/a/6300386/521946
-remote=origin ; for brname in `git branch -r | grep $remote | grep -v /master | grep -v /HEAD | awk '{gsub(/^[^\/]+\//,"",$1); print $1}'`; do git branch --track $brname $remote/$brname || true; done 2>/dev/null
+# # Checkout all remote branches
+# # https://gist.github.com/ElfSundae/92a5868f418ec3187dfff90fe6b20387
+# # https://stackoverflow.com/a/6300386/521946
+# remote=origin ; for brname in `git branch -r | grep $remote | grep -v /master | grep -v /HEAD | awk '{gsub(/^[^\/]+\//,"",$1); print $1}'`; do git branch --track $brname $remote/$brname || true; done 2>/dev/null
 
-git pull origin
+# git pull origin
 
-git push $MIRROR_NAME --all --prune
-git push $MIRROR_NAME --tags --prune
+# git push $MIRROR_NAME --all --prune
+# git push $MIRROR_NAME --tags --prune
+
+# http://blog.plataformatec.com.br/2013/05/how-to-properly-mirror-a-git-repository/
+git push $MIRROR_NAME --prune "+refs/remotes/origin/*:refs/heads/*" "+refs/tags/*:refs/tags/*"
+git push $MIRROR_NAME --delete HEAD
