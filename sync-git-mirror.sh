@@ -98,4 +98,6 @@ fi
 
 # http://blog.plataformatec.com.br/2013/05/how-to-properly-mirror-a-git-repository/
 git push $MIRROR_NAME --prune "+refs/remotes/origin/*:refs/heads/*" "+refs/tags/*:refs/tags/*"
-git push $MIRROR_NAME --delete HEAD
+if git show-ref "refs/remotes/$MIRROR_NAME/HEAD"; then
+    git push $MIRROR_NAME --delete HEAD
+fi
