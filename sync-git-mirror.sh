@@ -78,6 +78,7 @@ fi
 
 cd "$REPO_PATH"
 
+# Add --force to force update local existing tags
 git fetch origin --prune --prune-tags --force
 
 if ! git config remote.$MIRROR_NAME.url > /dev/null; then
@@ -85,16 +86,6 @@ if ! git config remote.$MIRROR_NAME.url > /dev/null; then
 else
     git remote set-url $MIRROR_NAME $MIRROR
 fi
-
-# # Checkout all remote branches
-# # https://gist.github.com/ElfSundae/92a5868f418ec3187dfff90fe6b20387
-# # https://stackoverflow.com/a/6300386/521946
-# remote=origin ; for brname in `git branch -r | grep $remote | grep -v /master | grep -v /HEAD | awk '{gsub(/^[^\/]+\//,"",$1); print $1}'`; do git branch --track $brname $remote/$brname || true; done 2>/dev/null
-
-# git pull origin
-
-# git push $MIRROR_NAME --all --prune
-# git push $MIRROR_NAME --tags --prune
 
 # Note: "negative refspecs" was added since Git 2.29.0: https://github.com/git/git/commit/c0192df6306d4d9ad77f6015a053925b13155834
 git push $MIRROR_NAME --prune "+refs/remotes/origin/*:refs/heads/*" ^refs/heads/HEAD "+refs/tags/*:refs/tags/*"
