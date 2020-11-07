@@ -2,6 +2,8 @@
 
 [`sync-git-mirror.sh`](sync-git-mirror.sh) syncs a git repository to a mirror or fork repository, including all branches and tags. Keep your git mirrors and forks up to date.
 
+_Git above 2.29.0 is required._
+
 ```
 $ sync-git-mirror.sh
 Sync Git Mirror - Keep your git mirrors and forks up to date.

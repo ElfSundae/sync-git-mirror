@@ -96,8 +96,5 @@ fi
 # git push $MIRROR_NAME --all --prune
 # git push $MIRROR_NAME --tags --prune
 
-# http://blog.plataformatec.com.br/2013/05/how-to-properly-mirror-a-git-repository/
-git push $MIRROR_NAME --prune "+refs/remotes/origin/*:refs/heads/*" "+refs/tags/*:refs/tags/*"
-if git show-ref --quiet "refs/remotes/$MIRROR_NAME/HEAD"; then
-    git push $MIRROR_NAME --delete HEAD
-fi
+# Note: "negative refspecs" was added since Git 2.29.0: https://github.com/git/git/commit/c0192df6306d4d9ad77f6015a053925b13155834
+git push $MIRROR_NAME --prune "+refs/remotes/origin/*:refs/heads/*" ^refs/heads/HEAD "+refs/tags/*:refs/tags/*"
